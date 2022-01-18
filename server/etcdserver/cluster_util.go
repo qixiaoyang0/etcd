@@ -237,6 +237,7 @@ func isCompatibleWithVers(lg *zap.Logger, vers map[string]*version.Versions, loc
 func getVersion(lg *zap.Logger, m *membership.Member, rt http.RoundTripper) (*version.Versions, error) {
 	cc := &http.Client{
 		Transport: rt,
+		Timeout:   5 * time.Second,
 	}
 	var (
 		err  error
@@ -355,6 +356,7 @@ func getDowngradeEnabledFromRemotePeers(lg *zap.Logger, cl *membership.RaftClust
 func getDowngradeEnabled(lg *zap.Logger, m *membership.Member, rt http.RoundTripper) (bool, error) {
 	cc := &http.Client{
 		Transport: rt,
+		Timeout:   5 * time.Second,
 	}
 	var (
 		err  error
